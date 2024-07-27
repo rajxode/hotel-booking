@@ -1,10 +1,10 @@
 
-import HomeBanner from '@/app/_landingPage/_component/HomeBanner';
+import LandingPage from '@/app/_landingPage/LandingPage';
 
 export default function Home() {
   return (
     <main className='w-full min-h-screen'>
-      <HomeBanner />
+      <LandingPage />
     </main>
   );
 }
