@@ -17,7 +17,7 @@ import {
 import LoginCard from "./_components/LoginCard";
 import SignUpCard from "./_components/SignUpCard";
 
-const TopNavbar = () => {
+const TopNavbar:React.FC = () => {
 
     const [scrolled,setScrolled] = useState(false);
 

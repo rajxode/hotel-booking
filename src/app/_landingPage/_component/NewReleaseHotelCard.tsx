@@ -1,8 +1,14 @@
 
 import React from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
-const NewReleaseHotelCard = ({img, title, content}) => {
+interface CardProps {
+    img: StaticImageData;
+    title: string;
+    content: string;
+}
+
+const NewReleaseHotelCard:React.FC<CardProps> = ({img, title, content}) => {
     return (
         <div className="w-[30%] h-full flex flex-col bg-white rounded overflow-hidden shadow">
             <div className='w-full h-3/5'>

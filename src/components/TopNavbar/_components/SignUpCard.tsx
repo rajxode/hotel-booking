@@ -16,7 +16,7 @@ interface SignUpData {
     confirmPassword: string;
 }
 
-const SignUpCard = () => {
+const SignUpCard:React.FC = () => {
 
     const [ userData, setUserData ] = useState<SignUpData>({
         name:"",

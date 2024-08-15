@@ -4,7 +4,7 @@ import TopNavbar from '@/components/TopNavbar/TopNavbar';
 import BookingCard from '@/app/_landingPage/_component/BookingCard';
 import NewReleaseCard from './NewReleaseCard';
 
-function HomeBanner() {
+const HomeBanner:React.FC = () => {
 
     return (
         <div 

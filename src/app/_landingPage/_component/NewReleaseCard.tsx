@@ -4,8 +4,15 @@ import hotelCardImg1 from '/public/images/hotel-1.jpg';
 import hotelCardImg2 from '/public/images/hotel-2.jpg';
 import hotelCardImg3 from '/public/images/hotel-3.jpg';
 import NewReleaseHotelCard from "@/app/_landingPage/_component/NewReleaseHotelCard";
+import { StaticImageData } from 'next/image';
 
-const hotelCardList = [
+interface CardData  {
+    img: StaticImageData;
+    title: string;
+    content: string;
+}
+
+const hotelCardList:CardData[] = [
    {
     img:hotelCardImg1,
     title: "Luxe Properties",
@@ -23,7 +30,7 @@ const hotelCardList = [
    },
 ]
 
-const NewReleaseCard = () => {
+const NewReleaseCard:React.FC = () => {
     return (
         <div className='absolute -bottom-[30vh] w-full flex justify-center'>
                 <div className='w-4/5 h-[300px] bg-[#fff0e1] rounded-lg flex shadow px-[3%] py-[1%] justify-between

@@ -14,7 +14,7 @@ interface LoginData {
     password: string;
 }
 
-const LoginCard = () => {
+const LoginCard:React.FC = () => {
 
     const [ userData, setUserData ] = useState<LoginData>({
         email:"",

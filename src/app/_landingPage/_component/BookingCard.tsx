@@ -3,10 +3,10 @@ import React from 'react';
 import Image from 'next/image';
 import hotelImg from '/public/images/hotel-icon.png';
 
-const BookingCard = () => {
+const BookingCard:React.FC = () => {
 
-    const inDay = new Date();
-    const outDay = new Date(inDay);
+    const inDay : Date = new Date();
+    const outDay : Date = new Date(inDay);
     outDay.setDate(outDay.getDate() + 1);
 
     return (

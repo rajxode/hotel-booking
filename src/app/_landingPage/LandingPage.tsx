@@ -3,7 +3,7 @@ import React from 'react';
 import HomeBanner from '@/app/_landingPage/_component/HomeBanner';
 import HotelsListAndStates from "@/app/_landingPage/_component/HotelsListAndStates";
 
-function LandingPage() {
+const LandingPage:React.FC = () => {
     return (
         <div className='w-full'>
             <HomeBanner />
