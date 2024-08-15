@@ -1,6 +1,6 @@
 
 import React from 'react';
-import TopNavbar from "@/app/_landingPage/_component/TopNavbar";
+import TopNavbar from '@/components/TopNavbar/TopNavbar';
 import BookingCard from '@/app/_landingPage/_component/BookingCard';
 import NewReleaseCard from './NewReleaseCard';
 
