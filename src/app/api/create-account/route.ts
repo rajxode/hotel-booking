@@ -1,13 +1,15 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/dbConfig/dbConfig";
+import bcryptjs from 'bcryptjs';
 import User from "@/models/User";
+import { BodyData, ResponseData, ErrMessage } from "./_interfaces/createAccountInterface";
 
 connect();
 
 export async function POST(req: NextRequest) {
     try {
-        const body = await req.json();
+        const body:BodyData = await req.json();
         const {name, email, password} = body;
 
         if(!name || !email || !password) {
@@ -19,15 +21,17 @@ export async function POST(req: NextRequest) {
             throw new Error('User already exists.')
         }
 
+        const hashPassword : string = await bcryptjs.hash(password,10);
+
         const user = new User({
             name,
             email,
-            password
+            password : hashPassword
         })
 
-        const newUser = await user.save();
+        const newUser:BodyData = await user.save();
 
-        const res = NextResponse.json({
+        const res:NextResponse<ResponseData> = NextResponse.json({
             success:true,
             message: "hello",
             user:newUser
@@ -39,10 +43,11 @@ export async function POST(req: NextRequest) {
         return res;
 
     } catch (error:any) {
-        console.log('error in signup', error.message);
+        const err = error as ErrMessage;
+        console.log('error in signup', err.message);
         return NextResponse.json({
             success:false,
-            message: error.message
+            message: err.message
         })
     }
 }
