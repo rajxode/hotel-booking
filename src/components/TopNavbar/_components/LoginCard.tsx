@@ -8,21 +8,75 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
-interface LoginData {
-    email: string;
-    password: string;
-}
+import { SignInData } from "@/components/TopNavbar/_interface/topNavbarInterface";
+import { signInThunk } from "@/redux/reducers/Authentication/authSlice";
+import { useAppDispatch } from "@/redux/reduxHooks";
+import { useToast } from "@/components/ui/use-toast";
 
 const LoginCard:React.FC = () => {
 
-    const [ userData, setUserData ] = useState<LoginData>({
+    const dispatch = useAppDispatch();
+    const { toast } = useToast();
+    const [ userData, setUserData ] = useState<SignInData>({
         email:"",
         password:"",
     });
+    const [emailErrMessage, setEmailErrMessage] = useState("");
+    const [passErrMessage, setPassErrMessage] = useState("");
+
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if(emailErrMessage) {
+            setEmailErrMessage("");
+        }
+        setUserData({...userData, email: e.target.value});
+    }
+
+    const handlePassChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if(passErrMessage) {
+            setPassErrMessage("");
+        }
+        setUserData({...userData, password: e.target.value});
+    }
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            if(!userData.email && !userData.password) {
+                setEmailErrMessage("Please enter your email");
+                setPassErrMessage("Please enter your password");
+                return;
+            }
+            if(!userData.email) {
+                setEmailErrMessage("Please enter your email");
+                return;
+            }
+            if(!userData.password) {
+                setPassErrMessage("Please enter your password");
+                return;
+            }
+            const result = await dispatch(signInThunk(userData)).unwrap();
+            if(result?.success) {
+                toast({
+                    description: result?.message
+                });
+                setUserData({
+                    email:"",
+                    password:""
+                });
+            } else {
+                throw new Error(result?.message);
+            }
+        } catch (error:any) {
+            console.log('error in signin', error.message);
+            toast({
+                description: `Error: ${error.message}`
+            })
+        }
+    }
 
     return (
         <Card>
+            <form onSubmit={handleSubmit}>
             <CardContent className="space-y-2 mt-5">
                 <div className="space-y-1">
                     <Label htmlFor="email">Email</Label>
@@ -30,8 +84,15 @@ const LoginCard:React.FC = () => {
                         id="email" 
                         type="email"
                         value={userData?.email} 
-                        onChange={(e) => setUserData({...userData, email: e.target.value})}
+                        onChange={handleEmailChange}
                     />
+                    {
+                        emailErrMessage
+                        &&
+                        <p className="text-xs text-red-500 mt-1">
+                            {emailErrMessage}
+                        </p>
+                    }
                 </div>
                 <div className="space-y-1">
                     <Label htmlFor="password">Password</Label>
@@ -39,13 +100,25 @@ const LoginCard:React.FC = () => {
                         id="password" 
                         type="password"
                         value={userData?.password} 
-                        onChange={(e) => setUserData({...userData, password: e.target.value})}
+                        onChange={handlePassChange}
                     />
+                    {
+                        passErrMessage
+                        &&
+                        <p className="text-xs text-red-500 mt-1">
+                            {passErrMessage}
+                        </p>
+                    }
                 </div>
             </CardContent>
             <CardFooter>
-                <Button>Login</Button>
+                <Button
+                    type="submit"
+                >
+                    Login
+                </Button>
             </CardFooter>
+            </form>
         </Card>
     )
 }

@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
             throw new Error('User already exists.')
         }
 
-        const hashPassword : string = await bcryptjs.hash(password,10);
+        const hashPassword = await bcryptjs.hash(password,10);
 
         const user = new User({
             name,
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 
         const res:NextResponse<ResponseData> = NextResponse.json({
             success:true,
-            message: "hello",
+            message: "New user created",
             user:newUser
         },
         {
