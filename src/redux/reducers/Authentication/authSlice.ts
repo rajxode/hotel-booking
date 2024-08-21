@@ -6,6 +6,7 @@ import { InitialStateInterface, SignUpInterface, SignInInterface } from "@/redux
 
 const initialState : InitialStateInterface = {
     authLoading: false,
+    user:null!,
 }
 
 export const signUpThunk = createAsyncThunk(
@@ -25,6 +26,13 @@ export const signInThunk = createAsyncThunk(
     async(data: SignInInterface, thunkAPI) => {
         try {
             const result = await axiosInstance.post('/login', data);
+            if(result?.data) {
+                const {success} = result?.data;
+                if(success) {
+                    thunkAPI.dispatch(setUser(result?.data?.user));
+                    localStorage.setItem("token", result?.data?.token);
+                }
+            }
             return result?.data;
         } catch (error:any) {
             console.log('error in signin', error.message);
@@ -36,6 +44,9 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
+        setUser: (state, action) => {
+            state.user = action.payload;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -49,5 +60,7 @@ const authSlice = createSlice({
 })
 
 export const authReducer = authSlice.reducer;
+
+export const { setUser } = authSlice.actions;
 
 export const authSelector = (state:RootState) => state.authReducer;

@@ -12,9 +12,11 @@ import { SignInData } from "@/components/TopNavbar/_interface/topNavbarInterface
 import { signInThunk } from "@/redux/reducers/Authentication/authSlice";
 import { useAppDispatch } from "@/redux/reduxHooks";
 import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 const LoginCard:React.FC = () => {
 
+    const router = useRouter();
     const dispatch = useAppDispatch();
     const { toast } = useToast();
     const [ userData, setUserData ] = useState<SignInData>({
@@ -57,18 +59,21 @@ const LoginCard:React.FC = () => {
             const result = await dispatch(signInThunk(userData)).unwrap();
             if(result?.success) {
                 toast({
+                    variant: "success",
                     description: result?.message
                 });
                 setUserData({
                     email:"",
                     password:""
                 });
+                router.replace('/home');
             } else {
                 throw new Error(result?.message);
             }
         } catch (error:any) {
             console.log('error in signin', error.message);
             toast({
+                variant: "destructive",
                 description: `Error: ${error.message}`
             })
         }

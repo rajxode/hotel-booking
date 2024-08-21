@@ -94,6 +94,7 @@ const SignUpCard:React.FC = () => {
             const result = await dispatch(signUpThunk(userData)).unwrap();
             if(result?.success) {
                 toast({
+                    variant: "success",
                     description: result?.message
                 })
                 setUserData({
@@ -108,6 +109,7 @@ const SignUpCard:React.FC = () => {
         } catch (error:any) {
             console.log('error in signup ', error.message);
             toast({
+                variant:"destructive",
                 description: `Error: ${error.message}`
             })
         }
