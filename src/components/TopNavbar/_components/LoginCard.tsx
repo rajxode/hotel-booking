@@ -9,8 +9,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SignInData } from "@/components/TopNavbar/_interface/topNavbarInterface";
-import { signInThunk } from "@/redux/reducers/Authentication/authSlice";
-import { useAppDispatch } from "@/redux/reduxHooks";
+import { authSelector, signInThunk } from "@/redux/reducers/Authentication/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/reduxHooks";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 
@@ -18,6 +18,7 @@ const LoginCard:React.FC = () => {
 
     const router = useRouter();
     const dispatch = useAppDispatch();
+    const { authLoading } =  useAppSelector(authSelector);
     const { toast } = useToast();
     const [ userData, setUserData ] = useState<SignInData>({
         email:"",
@@ -120,7 +121,13 @@ const LoginCard:React.FC = () => {
                 <Button
                     type="submit"
                 >
-                    Login
+                    {
+                        authLoading
+                        ?
+                        "Please wait..."
+                        :
+                        "Login"
+                    }
                 </Button>
             </CardFooter>
             </form>

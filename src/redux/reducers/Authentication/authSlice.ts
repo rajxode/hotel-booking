@@ -40,6 +40,22 @@ export const signInThunk = createAsyncThunk(
     }
 )
 
+export const signOutThunk = createAsyncThunk(
+    'auth/signOut',
+    async(args, thunkAPI)  => {
+        try {
+            const result = await axiosInstance.get('/logout');
+            if(result?.data?.success) {
+                thunkAPI.dispatch(setUser(null));
+                localStorage.removeItem("token");
+            }
+            return result?.data?.success;
+        } catch (error:any) {
+            console.log('error in signout', error.message);
+        }
+    }
+)
+
 const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -54,6 +70,18 @@ const authSlice = createSlice({
             state.authLoading = true;
         })
         .addCase(signUpThunk.fulfilled || signUpThunk.rejected, (state,action) => {
+            state.authLoading = false;
+        })
+        .addCase(signInThunk.pending , (state, action) => {
+            state.authLoading = true;
+        })
+        .addCase(signInThunk.fulfilled || signInThunk.rejected, (state,action) => {
+            state.authLoading = false;
+        })
+        .addCase(signOutThunk.pending , (state, action) => {
+            state.authLoading = true;
+        })
+        .addCase(signOutThunk.fulfilled || signOutThunk.rejected, (state,action) => {
             state.authLoading = false;
         })
     }
