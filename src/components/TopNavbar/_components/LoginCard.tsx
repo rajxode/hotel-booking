@@ -14,8 +14,8 @@ import { useAppDispatch, useAppSelector } from "@/redux/reduxHooks";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 
-const LoginCard:React.FC = () => {
 
+const LoginCard:React.FC = () => {
     const router = useRouter();
     const dispatch = useAppDispatch();
     const { authLoading } =  useAppSelector(authSelector);
@@ -120,6 +120,7 @@ const LoginCard:React.FC = () => {
             <CardFooter>
                 <Button
                     type="submit"
+                    disabled={authLoading}
                 >
                     {
                         authLoading

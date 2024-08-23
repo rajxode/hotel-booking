@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { useAppSelector } from "@/redux/reduxHooks";
 import { authSelector } from "@/redux/reducers/Authentication/authSlice";
 import AvatarAndMenu from "@/components/TopNavbar/_components/AvatarAndMenu";
@@ -30,7 +31,11 @@ const TopNavbar: React.FC = () => {
                 : "bg-inherit text-white py-3"
             } transition ease-in-out duration-600`}
     >
-      <div>My Hotel booking site</div>
+      <div>
+        <Link href="/">
+          My Hotel booking site
+        </Link>
+      </div>
       <div className="flex justify-around">
         {
             user 

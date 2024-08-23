@@ -10,14 +10,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SignUpData } from "@/components/TopNavbar/_interface/topNavbarInterface";
 import { useToast } from "@/components/ui/use-toast";
-import { useAppDispatch } from "@/redux/reduxHooks";
-import { signUpThunk } from "@/redux/reducers/Authentication/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/reduxHooks";
+import { authSelector, signUpThunk } from "@/redux/reducers/Authentication/authSlice";
 
 
 const SignUpCard:React.FC = () => {
-
     const { toast } = useToast();
     const dispatch = useAppDispatch();
+    const { authLoading } = useAppSelector(authSelector);
     const [ userData, setUserData ] = useState<SignUpData>({
         name:"",
         email:"",
@@ -186,9 +186,15 @@ const SignUpCard:React.FC = () => {
             </CardContent>
             <CardFooter className="flex flex-col justify-center items-start">
                 <Button
-                    type="submit"
-                >
-                    Create Account
+                    disabled={authLoading}
+                    >
+                        {
+                            authLoading
+                            ?
+                            "Please wait..."
+                            :
+                            "Create Account"
+                        }
                 </Button>
                 {
                     errorMessage
