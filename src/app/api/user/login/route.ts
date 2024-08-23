@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/User";
 import bcryptjs from 'bcryptjs';
 import jwt from "jsonwebtoken";
-import { BodyData, UserData, ResponseData } from "@/app/api/login/_interfaces/loginInterfaces";
+import { BodyData, UserData, ResponseData } from "@/app/api/user/login/_interfaces/loginInterfaces";
 
 connect();
 

@@ -13,7 +13,7 @@ export const signUpThunk = createAsyncThunk(
     'auth/signUp',
     async(data: SignUpInterface, thunkAPI) => {
         try {
-            const result = await axiosInstance.post('/create-account', data);
+            const result = await axiosInstance.post('/user/create-account', data);
             return result?.data;
         } catch (error : any) {
             console.log('error in signup', error.message);
@@ -25,7 +25,7 @@ export const signInThunk = createAsyncThunk(
     'auth/signIn',
     async(data: SignInInterface, thunkAPI) => {
         try {
-            const result = await axiosInstance.post('/login', data);
+            const result = await axiosInstance.post('/user/login', data);
             if(result?.data) {
                 const {success} = result?.data;
                 if(success) {
@@ -44,7 +44,7 @@ export const signOutThunk = createAsyncThunk(
     'auth/signOut',
     async(args, thunkAPI)  => {
         try {
-            const result = await axiosInstance.get('/logout');
+            const result = await axiosInstance.get('/user/logout');
             if(result?.data?.success) {
                 thunkAPI.dispatch(setUser(null));
                 localStorage.removeItem("token");
@@ -52,6 +52,20 @@ export const signOutThunk = createAsyncThunk(
             return result?.data?.success;
         } catch (error:any) {
             console.log('error in signout', error.message);
+        }
+    }
+)
+
+export const getMyDataThunk = createAsyncThunk(
+    'auth/getMyData',
+    async ( args, thunkAPI) => {
+        try {
+            const result = await axiosInstance.get("/user/get-my-data");
+            if(result?.data?.success) {
+                thunkAPI.dispatch(setUser(result?.data?.user));
+            }
+        } catch (error:any) {
+            console.log("error in getting user's data", error.message);
         }
     }
 )
@@ -82,6 +96,12 @@ const authSlice = createSlice({
             state.authLoading = true;
         })
         .addCase(signOutThunk.fulfilled || signOutThunk.rejected, (state,action) => {
+            state.authLoading = false;
+        })
+        .addCase(getMyDataThunk.pending , (state, action) => {
+            state.authLoading = true;
+        })
+        .addCase(getMyDataThunk.fulfilled || getMyDataThunk.rejected, (state, action) => {
             state.authLoading = false;
         })
     }

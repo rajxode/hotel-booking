@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connect } from "@/dbConfig/dbConfig";
 import bcryptjs from 'bcryptjs';
 import User from "@/models/User";
-import { BodyData, ResponseData, ErrMessage } from "./_interfaces/createAccountInterface";
+import { BodyData, ResponseData, ErrMessage } from "@/app/api/user/create-account/_interfaces/createAccountInterface";
 
 connect();
 

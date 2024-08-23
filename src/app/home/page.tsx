@@ -1,15 +1,22 @@
 
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import TopNavbar from "@/components/TopNavbar/TopNavbar";
-import { useAppSelector } from "@/redux/reduxHooks";
-import { authSelector } from "@/redux/reducers/Authentication/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/reduxHooks";
+import { authSelector, getMyDataThunk } from "@/redux/reducers/Authentication/authSlice";
 import Loader from "@/components/Loader/Loader";
 
 const HomePage:React.FC = () => {
-    const { authLoading } = useAppSelector(authSelector);
 
-    if(authLoading) {
+    const dispatch = useAppDispatch();
+    const { authLoading, user } = useAppSelector(authSelector);
+    useEffect(() => {
+        if(!user) {
+            dispatch(getMyDataThunk());
+        }
+    },[user]);
+
+    if(authLoading || !user) {
         return <Loader />
     }
 
