@@ -1,13 +1,13 @@
 
 import React from 'react';
 import HomeBanner from '@/app/_landingPage/_component/HomeBanner';
-import HotelsListAndStates from "@/app/_landingPage/_component/HotelsListAndStates";
+import OffersAndStates from "@/app/_landingPage/_component/OffersAndStates";
 
 const LandingPage:React.FC = () => {
     return (
         <div className='w-full'>
             <HomeBanner />
-            <HotelsListAndStates />
+            <OffersAndStates />
         </div>
     )
 }
