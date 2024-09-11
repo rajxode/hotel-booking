@@ -3,7 +3,7 @@ import React from 'react';
 import hotelCardImg1 from '/public/images/hotel-1.jpg';
 import hotelCardImg2 from '/public/images/hotel-2.jpg';
 import hotelCardImg3 from '/public/images/hotel-3.jpg';
-import NewReleaseHotelCard from "@/app/_landingPage/_component/NewReleaseHotelCard";
+import NewReleaseHotelCard from "@/app/_landingPage/_component/newRelease/NewReleaseHotelCard";
 import { StaticImageData } from 'next/image';
 
 interface CardData  {

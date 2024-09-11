@@ -2,7 +2,7 @@
 import React from 'react';
 import TopNavbar from '@/components/TopNavbar/TopNavbar';
 import BookingCard from '@/app/_landingPage/_component/BookingCard';
-import NewReleaseCard from './NewReleaseCard';
+import NewReleaseCard from './newRelease/NewReleaseCard';
 
 const HomeBanner:React.FC = () => {
 
