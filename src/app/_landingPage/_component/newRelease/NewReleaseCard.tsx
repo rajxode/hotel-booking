@@ -33,7 +33,7 @@ const hotelCardList:CardData[] = [
 const NewReleaseCard:React.FC = () => {
     return (
         <div className='absolute -bottom-[30vh] w-full flex justify-center'>
-                <div className='w-4/5 h-[300px] bg-[#fff0e1] rounded-lg flex shadow px-[3%] py-[1%] justify-between
+                <div className='w-4/5 min-h-[300px] bg-[#fff0e1] rounded-lg flex shadow px-[3%] py-[1%] justify-between
                      items-center'
                 >
                     <div className='flex flex-col w-1/4 h-full py-2'>

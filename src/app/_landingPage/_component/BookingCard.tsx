@@ -65,9 +65,10 @@ const BookingCard:React.FC = () => {
                     </div>
                 </div>
 
-                <div className='absolute -bottom-3 w-full flex justify-center items-center'>
-                    <button className='bg-blue-600 text-white rounded-full shadow px-5 py-1'>
-                        Search
+                <div className='absolute -bottom-5 w-full flex justify-center items-center'>
+                    <button className="bg-gradient-to-r from-sky-500 to-indigo-500 text-white rounded-full shadow px-7 py-2 
+                        font-bold tracking-wider text-lg">
+                        SEARCH
                     </button>
                 </div>
             </div>
