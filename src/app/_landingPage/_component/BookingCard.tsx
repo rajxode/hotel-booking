@@ -12,7 +12,7 @@ const BookingCard:React.FC = () => {
     return (
         <div
                 className='w-[90%] md:w-4/5 lg:w-3/5 h-1/2 bg-white rounded-md
-                    shadow-md flex flex-col justify-between relative opacity-95'
+                    shadow-md flex flex-col justify-between relative opacity-95 mb-5'
             >
                 <div className='absolute -top-10 w-full flex justify-center'>
                     <div className='w-4/5 h-[80px] bg-gray-100 rounded flex justify-center items-center'>

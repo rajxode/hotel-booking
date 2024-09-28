@@ -20,8 +20,8 @@ function SampleNextArrow(props:any) {
     const { onClick } = props;
     return (
       <div
-      className="text-black absolute -top-[50px] right-[35px] flex items-center bg-gray-100 
-        px-3 py-2 rounded-l-full cursor-pointer hover:bg-gray-200"
+        className="text-black absolute -top-[50px] right-[35px] flex items-center bg-gray-100 
+          px-3 py-2 rounded-l-full cursor-pointer hover:bg-gray-200"
         onClick={onClick}
       >
         <GrLinkPrevious />
