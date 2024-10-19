@@ -10,9 +10,9 @@ connect();
 export async function POST(req: NextRequest) {
     try {
         const body:BodyData = await req.json();
-        const {name, email, password} = body;
+        const {name, email, password,role, phone,address} = body;
 
-        if(!name || !email || !password) {
+        if(!name || !email || !password || !role) {
             throw new Error("Please provide all the values");
         }
 
@@ -26,10 +26,15 @@ export async function POST(req: NextRequest) {
         const user = new User({
             name,
             email,
-            password : hashPassword
+            password : hashPassword,
+            role,
+            phone,
+            address,
         })
 
         const newUser:BodyData = await user.save();
+
+        newUser.password = undefined;
 
         const res:NextResponse<ResponseData> = NextResponse.json({
             success:true,
