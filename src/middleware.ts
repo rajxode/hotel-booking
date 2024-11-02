@@ -1,22 +1,36 @@
 
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
+import { jwtVerify } from 'jose';
+
+const secret = new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET);
  
 // This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
-    const path = request.nextUrl.pathname;
-    
-    const isPublicPath = path === '/';
+export async function middleware(request: NextRequest) {
 
-    const authToken = request.cookies.get("token")?.value || '';
+    try {
+        const path = request.nextUrl.pathname;
 
-    if(authToken && isPublicPath) {
-        return NextResponse.redirect(new URL('/home', request.url));
-    } 
+        const isPublicPath = path === '/';
 
-    if(!authToken && !isPublicPath) {
-        return NextResponse.redirect(new URL("/", request.url));
+        const authToken = request.cookies.get("accessToken")?.value || '';
+
+        if(authToken && isPublicPath) {
+            const validToken = await jwtVerify(authToken,secret);
+            if(!validToken) {
+                return NextResponse.redirect(new URL('/', request.url));
+            }
+            return NextResponse.redirect(new URL('/home', request.url));
+        }
+
+        if(!authToken && !isPublicPath) {
+            return NextResponse.redirect(new URL('/', request.url));
+        }
+    } catch (error:any) {
+        console.log("error in middleware", error.message);
+        return NextResponse.json({ message: 'Invalid token' }, { status: 401 });
     }
+    
 }
  
 // See "Matching Paths" below to learn more

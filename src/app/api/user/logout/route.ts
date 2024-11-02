@@ -11,10 +11,9 @@ export async function GET(req: NextRequest) {
                 status: 200
             }
         )
-        response.cookies.set("token","",{httpOnly: true, expires: Date.now()});
+        response.cookies.set("accessToken","",{httpOnly: true, expires: Date.now()});
         return response;
     } catch (error : any) {
-        console.log('error in logout', error.message);
         return NextResponse.json({
                 success:false,
                 message: error.message

@@ -3,10 +3,12 @@ import { connect } from "@/dbConfig/dbConfig";
 import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/User";
 import bcryptjs from 'bcryptjs';
-import jwt from "jsonwebtoken";
+import { SignJWT } from 'jose';
 import { BodyData, UserData, ResponseData } from "@/app/api/user/login/_interfaces/loginInterfaces";
 
 connect();
+
+const secret = new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET);
 
 export async function POST (req: NextRequest) {
     try {
@@ -37,25 +39,28 @@ export async function POST (req: NextRequest) {
             email: user.email
         }
 
-        const token = await jwt.sign(tokenData, process.env.NEXT_PUBLIC_JWT_SECRET!,{expiresIn: process.env.NEXT_PUBLIC_JWT_EXPIRY});
+        const token = await new SignJWT(tokenData)
+            .setProtectedHeader({alg: 'HS256'})
+            .setIssuedAt()
+            .setExpirationTime(process.env.NEXT_PUBLIC_JWT_EXPIRY!)
+            .sign(secret);
 
         const res:NextResponse<ResponseData> = NextResponse.json({
             success: true,
             message: "user logged in",
             user,
-            token
+            token,
             },
             {
                 status: 200
             }
         )
 
-        res.cookies.set("token", token, {httpOnly: true});
+        res.cookies.set("accessToken", token, {httpOnly: true, secure: true, maxAge: 60});
 
         return res;
 
     } catch (error:any) {
-        console.log('Error in login', error.message);
         return NextResponse.json({
             success: false,
             message: error.message
