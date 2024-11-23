@@ -56,7 +56,7 @@ export async function POST (req: NextRequest) {
             }
         )
 
-        res.cookies.set("accessToken", token, {httpOnly: true, secure: true, maxAge: 60});
+        res.cookies.set("accessToken", token, {httpOnly: true, secure: true, maxAge: 7 * 24 * 60 * 60});
 
         return res;
 

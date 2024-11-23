@@ -30,10 +30,10 @@ const hotelSchema = new Schema<HotelInterface>(
             ref: "User",
             required: true
         },
-        rooms: {
+        rooms: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "Room"
-        },
+        }],
         amenities: [{
             type: String,
         }],
