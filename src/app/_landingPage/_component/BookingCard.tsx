@@ -29,14 +29,22 @@ const BookingCard:React.FC = () => {
                 <div className='w-full h-3/4 flex justify-center items-center'>
                     <div className='w-[90%] h-3/5 bg-[#EEEEEE] rounded flex justify-evenly'>
                         <div className='w-1/4 flex flex-col justify-around p-2 border-r border-gray-400' >
-                            <div className='text-sm'>Location</div>
+                            <div className='text-sm'>
+                                Location
+                                &nbsp;
+                                <span className='text-blue-400'><i className="fa-solid fa-chevron-down"></i></span>
+                            </div>
                             <div className='text-xl'>
                                 Delhi
                             </div>
                             <div className='text-sm'>India</div>
                         </div>
                         <div className='w-1/4 flex flex-col justify-around p-2 border-gray-400 border-r' >
-                            <div className='text-sm'>Check-In</div>
+                            <div className='text-sm'>
+                                Check-In
+                                &nbsp;
+                                <span className='text-blue-400'><i className="fa-solid fa-chevron-down"></i></span>
+                            </div>
                             <div className='text-xl'>
                                 {inDay.toString().slice(3,15)}
                             </div>
@@ -45,7 +53,11 @@ const BookingCard:React.FC = () => {
                             </div>
                         </div>
                         <div className='w-1/4 flex flex-col justify-around p-2 border-gray-400 border-r' >
-                            <div className='text-sm'>Check-Out</div>
+                            <div className='text-sm'>
+                                Check-Out
+                                &nbsp;
+                                <span className='text-blue-400'><i className="fa-solid fa-chevron-down"></i></span>
+                            </div>
                             <div className='text-xl'>
                                 {outDay.toString().slice(3,15)}
                             </div>
@@ -54,12 +66,19 @@ const BookingCard:React.FC = () => {
                             </div>
                         </div>
                         <div className='w-1/4 flex flex-col justify-around p-2' >
-                            <div className='text-sm'>No. Of Guest</div>
-                            <div className='text-xl'>
-                                Delhi
-                            </div>
                             <div className='text-sm'>
-                                India
+                                Room and Guest
+                                &nbsp;
+                                <span className='text-blue-400'><i className="fa-solid fa-chevron-down"></i></span>
+                            </div>
+                            <div className='flex flex-start'>
+                                <div>
+                                    <span className='text-xl font-bold'>1</span><span> Room</span>
+                                </div>
+                                &nbsp;
+                                <div>
+                                    <span className='text-xl font-bold'>2</span><span> Guests</span>
+                                </div>
                             </div>
                         </div>
                     </div>

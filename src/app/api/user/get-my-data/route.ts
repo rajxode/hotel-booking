@@ -2,6 +2,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/User";
 import { getDataFromToken } from "@/utils/helperFunctions/getDataFromToken";
+import { connect } from "@/dbConfig/dbConfig";
+
+connect();
 
 export async function GET ( req: NextRequest) {
     try {

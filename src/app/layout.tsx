@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "@/styles/globals.css";
 import StoreProvider from "./StoreProvider";
 import { Toaster } from "@/components/ui/toaster";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+        src={process.env.NEXT_PUBLIC_FONTAWESOME_URL}
+        crossOrigin="anonymous"
+        >
+        </Script>
+      </head>
       <body className={inter.className}>
         <StoreProvider>
           {children}
