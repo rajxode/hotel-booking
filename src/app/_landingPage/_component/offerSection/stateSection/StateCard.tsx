@@ -1,18 +1,10 @@
 
 import React from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+import { StateCardPropType } from "@/types/landingPage/offerTypes";
 
-interface StateType {
-    name: string;
-    desc: string;
-    imgSrc: StaticImageData;
-}
 
-interface PropType {
-    state: StateType;
-}
-
-const StateCard:React.FC<PropType> = ({state}) => {
+const StateCard:React.FC<StateCardPropType> = ({state}) => {
     const { imgSrc, name, desc } = state;
     return (
         <div className="w-[32%] h-[70px] mr-2 my-3 flex justify-around p-1">

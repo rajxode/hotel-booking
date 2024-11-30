@@ -1,6 +1,6 @@
 
 import React from 'react'
-import StateCard from "@/app/_landingPage/_component/stateSection/StateCard";
+import StateCard from "@/app/_landingPage/_component/offerSection/stateSection/StateCard";
 import { stateListArray } from '@/utils/constantData/stateListArray';
 
 const States:React.FC = () => {

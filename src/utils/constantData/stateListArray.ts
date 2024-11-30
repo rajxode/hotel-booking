@@ -1,4 +1,5 @@
 
+import { StateType } from "@/types/landingPage/offerTypes";
 import delhiImage from "/public/images/delhi.jpg";
 import goaImage from "/public/images/goa.jpg";
 import bangaloreImage from "/public/images/bangalore.jpg";
@@ -16,7 +17,7 @@ import baliImage from "/public/images/bali.jpg";
 import maldivesImage from "/public/images/maldives.jpg";
 import othersImage from "/public/images/others.jpg";
 
-export const stateListArray = [
+export const stateListArray:Array<StateType> = [
     {
         name:"Goa",
         desc:"Hotels, Budget Hotels, Resorts, Best Hotels, North Goa, Villas",

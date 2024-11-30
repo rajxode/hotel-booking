@@ -1,7 +1,7 @@
 
 import React from 'react';
-import HomeBanner from '@/app/_landingPage/_component/HomeBanner';
-import OffersAndStates from "@/app/_landingPage/_component/OffersAndStates";
+import HomeBanner from '@/app/_landingPage/_component/homeBanner/HomeBanner';
+import OffersAndStates from "@/app/_landingPage/_component/offerSection/OffersAndStates";
 import Footer from "@/app/_landingPage/_component/footerSection/Footer";
 
 const LandingPage:React.FC = () => {

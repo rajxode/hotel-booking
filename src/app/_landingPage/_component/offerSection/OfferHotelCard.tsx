@@ -2,14 +2,10 @@
 import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { Card } from "@/components/ui/card";
+import { OfferCardPropType } from "@/types/landingPage/offerTypes";
 
-interface cardProp {
-    imageSrc: StaticImageData;
-    cardHeading: string;
-    cardDescri: string;
-}
 
-const OfferHotelCard :React.FC <cardProp> = (props) => {
+const OfferHotelCard :React.FC <OfferCardPropType> = (props) => {
     return (
         <Card className="w-[500px] h-[175px] mb-4 drop-shadow-md p-2 flex flex-col justify-between"
         >
