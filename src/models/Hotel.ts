@@ -22,8 +22,14 @@ const hotelSchema = new Schema<HotelInterface>(
             type: String,
         },
         location:{
-            type: String,
-            required: [true, "Please enter a location"]
+            city:{
+                type:String,
+                required:[true,"Please enter city name"]
+            },
+            country:{
+                type:String,
+                required:[true,"Please enter country name"]
+            }
         },
         manager: {
             type: mongoose.Schema.Types.ObjectId,

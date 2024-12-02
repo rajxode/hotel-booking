@@ -15,7 +15,7 @@ const BookingForm = () => {
         location:{city:"Delhi",country:"India"},
         checkIn:{date:inDay.toString().slice(3,15),day:inDay?.toString().slice(0,3)},
         checkOut:{date:outDay.toString().slice(3,15),day:outDay?.toString().slice(0,3)},
-        roomAndGuest:{room:1,guest:2}
+        roomAndGuest:{room:"1",guest:"2"}
     });
     return (
         <>

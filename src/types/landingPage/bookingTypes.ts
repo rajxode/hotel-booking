@@ -9,8 +9,8 @@ interface DayAndDateType {
 }
 
 interface RoomAndGuestType {
-    room:number;
-    guest:number;
+    room:string;
+    guest:string;
 }
 
 export interface BookingDataType {
