@@ -74,8 +74,8 @@ const LocationForm:React.FC<Props> = ({bookingData, setBookingData}) => {
                                     .filter((item) => {
                                         return item.city.toLocaleLowerCase().includes(searchLoc.toLocaleLowerCase())
                                     })
-                                    .map((item) => (
-                                        <div className="my-2 font-base cursor-pointer hover:bg-gray-200"
+                                    .map((item,i) => (
+                                        <div key={i} className="my-2 font-base cursor-pointer hover:bg-gray-200"
                                             onClick={() => handleLocChange(item)}
                                         >
                                             <span className="mr-2"><i className="fa-solid fa-location-dot"></i></span>

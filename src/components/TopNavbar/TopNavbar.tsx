@@ -7,7 +7,7 @@ import AvatarAndMenu from "@/components/TopNavbar/_components/AvatarAndMenu";
 import AuthenticationDialog from "@/components/TopNavbar/_components/AuthenticationDialog";
 import SliderMenu from "@/components/TopNavbar/_components/SliderMenu";
 
-const TopNavbar: React.FC = () => {
+const TopNavbar: React.FC<{parent:string;}> = ({parent}) => {
   const { user } = useAppSelector(authSelector);
   const [scrolled, setScrolled] = useState(false);
 
@@ -25,11 +25,17 @@ const TopNavbar: React.FC = () => {
 
   return (
     <div
-      className={`w-full fixed top-0 left-0 right-0 h-auto z-10 px-[2%] 
-          md:px-[10%] py-4 flex justify-between items-center
-          text-sm sm:text-base
+      className={`w-full h-auto z-10 px-[2%] md:px-[10%] py-4 flex justify-between 
+          items-center text-sm sm:text-base
           ${
-            scrolled
+            parent === "main"
+            ?
+            "fixed top-0 left-0 right-0"
+            :
+            ""
+          }
+          ${
+            scrolled || parent !== "main"
               ? "bg-white text-black shadow-md"
               : "bg-inherit text-white py-3"
           } transition ease-in-out duration-600`}

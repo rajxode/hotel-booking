@@ -11,7 +11,7 @@ const HomeBanner:React.FC = () => {
             className='w-full h-[65vh] bg-[url("/images/hero.jpg")] bg-cover bg-center
                 flex justify-center items-center relative'
         >
-            <TopNavbar />
+            <TopNavbar parent='main' />
             <BookingCard />
             <NewReleaseCard />
         </div>

@@ -24,8 +24,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <Script
-        src={process.env.NEXT_PUBLIC_FONTAWESOME_URL}
-        crossOrigin="anonymous"
+          id="font-awesome"
+          src={process.env.NEXT_PUBLIC_FONTAWESOME_URL}
+          crossOrigin="anonymous"
         >
         </Script>
       </head>

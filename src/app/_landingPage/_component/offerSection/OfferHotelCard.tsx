@@ -18,7 +18,7 @@ const OfferHotelCard :React.FC <OfferCardPropType> = (props) => {
                 </div>
                 <div className="h-full flex flex-col w-full max-w-[350px] p-1 rounded-sm">
                     <div className="w-full flex justify-end text-xs text-gray-400">
-                        T&C'S APPLY
+                        T&C&apos;S APPLY
                     </div>
                     <div className="w-full flex text-lg font-semibold">
                         {props.cardHeading}

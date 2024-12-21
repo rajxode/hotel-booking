@@ -15,7 +15,7 @@ const SliderMenu:React.FC = () => {
           <button><HiMenuAlt2 /></button>
         </SheetTrigger>
         <SheetContent side="left" className="flex flex-col justify-start items-center p-2 bg-[#f2f2f2]">
-          {Array(2).fill(0).map((_,i) => <MenuItemCard />)}
+          {Array(2).fill(0).map((_,i) => <MenuItemCard key={i} />)}
         </SheetContent>
       </Sheet>
     )
