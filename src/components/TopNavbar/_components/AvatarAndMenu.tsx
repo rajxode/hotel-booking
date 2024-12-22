@@ -14,6 +14,7 @@ import { useAppDispatch } from "@/redux/reduxHooks";
 import { signOutThunk } from "@/redux/reducers/Authentication/authSlice";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
+import Link from "next/link";
 
 const AvatarAndMenu: React.FC<AvatarProps> = ({ user }) => {
   
@@ -53,7 +54,13 @@ const AvatarAndMenu: React.FC<AvatarProps> = ({ user }) => {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link
+                  href="/home/my-profile"
+                >
+                  Profile
+                </Link>
+                </DropdownMenuItem>
               <DropdownMenuItem>Billing</DropdownMenuItem>
               <DropdownMenuItem>Settings</DropdownMenuItem>
             </DropdownMenuGroup>

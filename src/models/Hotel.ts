@@ -1,15 +1,21 @@
 
 import mongoose, { Schema, models, model, Types } from "mongoose";
 
+interface Location {
+    city: string;
+    country: string;
+}
+
 interface HotelInterface {
     name: string;
     description?: string;
-    location: string;
+    location: Location;
     manager: Types.ObjectId;
     rooms?: Types.ObjectId[];
     amenities?:string[];
     rating?:number;
     images?:string[];
+    price:number;
 }
 
 const hotelSchema = new Schema<HotelInterface>(
@@ -49,7 +55,11 @@ const hotelSchema = new Schema<HotelInterface>(
         },
         images:[{
             type: String,
-        }]
+        }],
+        price:{
+            type: Number,
+            default: 0
+        }
     },
     {
         timestamps:true,

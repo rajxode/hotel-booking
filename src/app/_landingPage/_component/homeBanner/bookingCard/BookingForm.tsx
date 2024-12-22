@@ -21,7 +21,7 @@ const BookingForm = () => {
 
     const handleClick = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        router.push(`/hotel-search?city=${bookingData.location.city}&country=${bookingData.location.country}&checkIn=${bookingData.checkIn.date}&checkOut=${bookingData.checkOut.date}&room=${bookingData.roomAndGuest.room}`);
+        router.push(`/hotel-search?city=${bookingData.location.city}&country=${bookingData.location.country}&checkIn=${bookingData.checkIn.date}&checkOut=${bookingData.checkOut.date}&room=${bookingData.roomAndGuest.room}&guest=${bookingData.roomAndGuest.guest}`);
     }
 
     return (
