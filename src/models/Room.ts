@@ -3,12 +3,14 @@ import mongoose, { Schema, models, model, Types } from "mongoose";
 
 interface RoomInterface {
     hotel: Types.ObjectId;
-    roomType: string;
+    name: string;
     pricePerNight: number;
     available: boolean;
     maxOccupancy: number;
     bookings?:Types.ObjectId[];
     images?:string[];
+    rating:number;
+    desription?:string;
 }
 
 const roomSchema = new Schema<RoomInterface>(
@@ -18,7 +20,10 @@ const roomSchema = new Schema<RoomInterface>(
             ref: "Hotel",
             required:[true, "Hotel not provided"]
         },
-        roomType:{
+        desription:{
+            type: String,
+        },
+        name:{
             type: String,
             required: [true, "Enter room type"]
         },
@@ -40,7 +45,11 @@ const roomSchema = new Schema<RoomInterface>(
         }],
         images:[{
             type: String,
-        }]
+        }],
+        rating:{
+            type: Number,
+            default: 0,
+        }
     },
     {
         timestamps:true,

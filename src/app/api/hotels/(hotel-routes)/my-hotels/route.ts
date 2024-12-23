@@ -10,9 +10,24 @@ export async function GET(req:NextRequest) {
     try {
         const userId = await getDataFromToken(req);
         if(!userId) {
-            throw new Error("User not fouond");
+            return NextResponse.json({
+                success: false,
+                message: "Authentication failed"
+            }, {
+                status: 401
+            });
         }
         const myHotels = await Hotel.find({manager:userId});
+
+        if(!myHotels) {
+            return NextResponse.json({
+                success: true,
+                hotels: []
+            }, {
+                status: 200
+            });
+        }
+
         return NextResponse.json({
                 success:true,
                 hotels:myHotels
@@ -21,10 +36,11 @@ export async function GET(req:NextRequest) {
             }
         )
     } catch (error:any) {
-        console.log("error in finding hotels", error.message);
         return NextResponse.json({
-            success:false,
-            message:error.message
-        })
+            success: false,
+            message: "Internal server error"
+        }, {
+            status: 500
+        });
     }
 }

@@ -15,17 +15,21 @@ export interface BookingInterface {
 }
 
 export interface RoomInterface {
+    id:string;
     hotel:string;
-    roomType: string;
+    name: string;
     pricePerNight: number;
     available: boolean;
     maxOccupancy: number;
     bookings?:BookingInterface[];
-    images?:string[];
+    images:string[];
+    description:string;
+    rating?:number;
 }
 
 
 export interface HotelInterface {
+    id:string;
     name: string;
     description?: string;
     location: Location;
@@ -33,6 +37,6 @@ export interface HotelInterface {
     rooms?: RoomInterface[];
     amenities?:string[];
     rating?:number;
-    images?:string[];
+    images:string[];
     price:number;
 }

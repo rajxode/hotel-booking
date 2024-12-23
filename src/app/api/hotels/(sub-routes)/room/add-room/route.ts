@@ -7,8 +7,6 @@ import { getDataFromToken } from "@/utils/helperFunctions/getDataFromToken";
 connect();
 
 export async function POST(req:NextRequest) {
-
-    console.log("api called");
     try {
         const userId = await getDataFromToken(req);
 
@@ -17,9 +15,9 @@ export async function POST(req:NextRequest) {
         }
 
         const body = await req.json();
-        const {hotel,roomType,pricePerNight,available,maxOccupancy} = body;
+        const {hotel,name,pricePerNight,available,maxOccupancy} = body;
 
-        if(!hotel || !roomType || !pricePerNight|| !available|| !maxOccupancy) {
+        if(!hotel || !name || !pricePerNight|| !available|| !maxOccupancy) {
             throw new Error("All data mandatory");
         }
 
