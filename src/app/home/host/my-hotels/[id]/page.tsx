@@ -1,4 +1,5 @@
-'use client';
+
+// 'use client';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Star, Wifi, Car, Utensils, Dumbbell, 
@@ -16,9 +17,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { HotelInterface, RoomInterface } from '@/types/hotelAndRoom/hotelAndRoomTypes';
 import ImageGalleryDialog from '@/components/ImageSlider/ImageGalleryDialog';
+import axiosInstance from '@/utils/axiosInstance';
 
 const hotel: HotelInterface = {
-  id: "1",
+  _id: "1",
   name: "Sunset Beach Villa",
   manager:"",
   description: "Experience luxury and relaxation in our beachfront villa with stunning ocean views.",
@@ -63,39 +65,37 @@ const amenityIcons = {
   "Fitness Center": Dumbbell,
 }
 
-export default function HotelInfo({ params }: { params: { id: string } }) {
-  
-  if (hotel.id !== params.id) {
-    notFound()
-  }
+export default async function HotelInfo({ params }: { params: { id: string } }) {
 
-  const handleUpdateHotel = () => {
-    console.log("Update hotel")
-  }
+  const response = await axiosInstance.get(`/hotels/get-hotel/${params.id}`);
+  console.log('response', response.data);
+  // const handleUpdateHotel = () => {
+  //   console.log("Update hotel")
+  // }
 
-  const handleAddRoom = () => {
-    console.log("Add room")
-  }
+  // const handleAddRoom = () => {
+  //   console.log("Add room")
+  // }
 
-  const handleUpdateRoom = (roomId: string) => {
-    console.log("Update room", roomId)
-  }
+  // const handleUpdateRoom = (roomId: string) => {
+  //   console.log("Update room", roomId)
+  // }
 
-  const handleRemoveRoom = (roomId: string) => {
-    console.log("Remove room", roomId)
-  }
+  // const handleRemoveRoom = (roomId: string) => {
+  //   console.log("Remove room", roomId)
+  // }
 
-  const handleRemoveHotel = () => {
-    console.log("Remove hotel")
-  }
+  // const handleRemoveHotel = () => {
+  //   console.log("Remove hotel")
+  // }
 
-  const visibleImages = hotel?.images?.slice(0, 4);
-  const imagesLength = hotel?.images?.length || 0;
-  const remainingImagesCount = Math.max(0, imagesLength - 4);
+  // const visibleImages = hotel?.images?.slice(0, 4);
+  // const imagesLength = hotel?.images?.length || 0;
+  // const remainingImagesCount = Math.max(0, imagesLength - 4);
 
   return (
     <div className='w-full min-h-screen bg-[#f6f6f6]'>
-    <div className="container mx-auto px-4 py-8">
+    {/* <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div className="grid grid-cols-2 gap-2">
           {visibleImages?.map((image, index) => (
@@ -217,7 +217,7 @@ export default function HotelInfo({ params }: { params: { id: string } }) {
           </>
         ))}
       </div>
-    </div>
+    </div> */}
     </div>
   )
 }

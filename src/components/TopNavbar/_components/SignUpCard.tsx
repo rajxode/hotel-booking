@@ -126,8 +126,8 @@ const SignUpCard: React.FC = () => {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="customer">customer</SelectItem>
-                      <SelectItem value="manager">manager</SelectItem>
+                      <SelectItem value="customer">Customer</SelectItem>
+                      <SelectItem value="manager">Become a Host</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />

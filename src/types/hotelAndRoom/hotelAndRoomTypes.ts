@@ -29,7 +29,7 @@ export interface RoomInterface {
 
 
 export interface HotelInterface {
-    id:string;
+    _id:string;
     name: string;
     description?: string;
     location: Location;

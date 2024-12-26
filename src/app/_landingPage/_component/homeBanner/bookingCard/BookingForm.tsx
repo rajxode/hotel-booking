@@ -1,14 +1,17 @@
 
 "use client";
-import React, { ReactEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { BookingDataType } from "@/types/landingPage/bookingTypes";
 import LocationForm from "@/app/_landingPage/_component/homeBanner/bookingCard/bookingFormComponents/LocationForm";
 import RoomAndGuestForm from "@/app/_landingPage/_component/homeBanner/bookingCard/bookingFormComponents/RoomAndGuestForm";
 import CheckInOutForm from "@/app/_landingPage/_component/homeBanner/bookingCard/bookingFormComponents/CheckInOutForm";
 import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/redux/reduxHooks";
+import { authSelector } from "@/redux/reducers/Authentication/authSlice";
 
 const BookingForm = () => {
     const router = useRouter();
+    const {user} = useAppSelector(authSelector);
     const inDay : Date = new Date();
     const outDay : Date = new Date(inDay);
     outDay.setDate(outDay.getDate() + 1);
@@ -21,7 +24,11 @@ const BookingForm = () => {
 
     const handleClick = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        router.push(`/hotel-search?city=${bookingData.location.city}&country=${bookingData.location.country}&checkIn=${bookingData.checkIn.date}&checkOut=${bookingData.checkOut.date}&room=${bookingData.roomAndGuest.room}&guest=${bookingData.roomAndGuest.guest}`);
+        if(user) {
+            router.push(`/home/search?city=${bookingData.location.city}&country=${bookingData.location.country}&checkIn=${bookingData.checkIn.date}&checkOut=${bookingData.checkOut.date}&room=${bookingData.roomAndGuest.room}&guest=${bookingData.roomAndGuest.guest}`);
+        } else {
+            router.push(`/hotel-search?city=${bookingData.location.city}&country=${bookingData.location.country}&checkIn=${bookingData.checkIn.date}&checkOut=${bookingData.checkOut.date}&room=${bookingData.roomAndGuest.room}&guest=${bookingData.roomAndGuest.guest}`);
+        }
     }
 
     return (
