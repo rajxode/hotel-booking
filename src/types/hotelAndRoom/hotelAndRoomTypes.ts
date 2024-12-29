@@ -15,7 +15,7 @@ export interface BookingInterface {
 }
 
 export interface RoomInterface {
-    id:string;
+    _id:string;
     hotel:string;
     name: string;
     pricePerNight: number;

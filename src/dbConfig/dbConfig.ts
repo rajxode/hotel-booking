@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 export async function  connect(){
     try {
         // connecting to DB
-        mongoose.connect(process.env.NEXT_PUBLIC_MONGODB_URL!);
+        await mongoose.connect(process.env.NEXT_PUBLIC_MONGODB_URL!);
         // connection
         const connection = mongoose.connection;
 
@@ -22,5 +22,6 @@ export async function  connect(){
     } catch (error) {
         console.log('Something goes wrong!');
         console.log(error);
+        process.exit(1);
     }
 }

@@ -16,17 +16,26 @@ export async function GET(
 
         if(!hotel) {
             return NextResponse.json({
-                success:false
-            })
+                    success:false,
+                    message:"Hotel doesn't exists"
+                },{
+                    status: 400
+                }
+            )
         }
 
         return NextResponse.json({
-            success:true,
-            hotel
-        })
-    } catch (error) {
+                success:true,
+                hotel
+            },{
+                status:200
+            }
+        )
+    } catch (error:any) {
+        console.log('error in getting hotel by id', error.message);
         return NextResponse.json({
-            success:false
+            success:false,
+            message:error.message
         })
     }
 }
